@@ -9,8 +9,11 @@ const winston = require('winston');
 require('dotenv').config();
 
 //Import routes
+const AuthRouter = require('./routes/auth.js');
 
 //Import MongoDB models
+const CookieModel = require('./models/cookie.js');
+const UserModel = require('./models/user.js');
 
 //Import the SSL certificate
 const sslOptions = {
@@ -39,6 +42,7 @@ app.get('/', function(req, res){
 });
 
 //Connect routes
+app.use('/auth', AuthRouter);
 
 //Start server
 server.listen(process.env.PORT);
